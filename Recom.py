@@ -10,4 +10,5 @@ api_request_response = requests.get(url="https://www.googleapis.com/books/v1/vol
 #Convert the data into a JSON object in python
 response_data = api_request_response.json()
 print(response_data['items'][0]['volumeInfo']['averageRating'])
+google.books.DefaultViewer(div, opt_options)
 # print(response_data)
