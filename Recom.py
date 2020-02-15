@@ -14,12 +14,6 @@ subject = "fighting"
 
 # api_request_response = requests.get(url="https://www.googleapis.com/books/v1/volumes?content-type=application/json      &q=%22+book+%22          &key=AIzaSyBlnhTDwJxnr9INvUAz4FMLO4dKoRBureU"
 # )
-def api_search(text):
-    parameters = {"q": text, 
-                "key": API_KEY}
-
-    response = requests.get(url= SEARCH_ENDPOINT, params=parameters)
-    return response.json()
 
 def api_search(text):
     parameters = {"q": text, "key": API_KEY}
