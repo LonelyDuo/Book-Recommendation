@@ -6,7 +6,7 @@ import json
 SEARCH_ENDPOINT = "https://www.googleapis.com/books/v1/volumes?"
 # SEARCH_ENDPOINT = "https://www.googleapis.com/books/v1/volumes?content-type=application/json"
 API_KEY = "AIzaSyBlnhTDwJxnr9INvUAz4FMLO4dKoRBureU"
-subject = "fighting"
+
 
 # book = input('pick book subject: ')
 # api_request_response = requests.get()
