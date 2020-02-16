@@ -48,7 +48,7 @@ while True:
             print("\t", results['volumeInfo']['averageRating'])
             print("\n\n")
 
-            user_input = input("Is this the right book?")
+            user_input = input("Is this the right book: ")
             if (user_input.lower() == "yes"):
                 #correct book, so we store the necessary information of the book
                 theBook = []
