@@ -2,35 +2,53 @@
 
 <html>
     <head>
-        <title> Wikihow</title>
         <style>
-            body{
-                background-color: blueviolet;
+            html {
+                padding: 0;
+                margin: 0;
             }
+            body{
+                padding:0;
+                margin: 0;
+                background-color: white;
+            }
+            #title {
+                position: absolute;
+                color: white;
+                margin-left: auto;
+                margin-right: auto;
+
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+            #container {
+                position: static;
+                background-color: wheat;
+                height: max-content;
+                top: auto
+                left:0;
+            }
+            #navbar {
+                background-color: rgb(17, 17, 17);
+                padding: 0px;
+                margin: 0px;
+                height: 100px;
+                top: auto;
+            }
+
         </style>
+        <title> Literature Recommendation </title>
     </head>
     <body>
-        <script type =  "text/javascript">
-            function submit_button(){
-                var bookName = document.getElementById("bookName");
-                var txtOutput = document.getElementById("txtOutput");
-                 txtOutput.value = "Hi there, " + name + "!"
-            }
-        </script>
-        <h1> How to create a webpage </h1>
-        <p>Hello this is a paragraph</p>
-        <!-- <img src = "https://www.mypicture.com/lake.jpg"> -->
-        <a href = "https://facebook.com"> Facebook </a>
+        <div id = "container">
+            <div id = "navbar">
+                <h1 id="title"> Book Recommendation</h1>
+                <!-- <p> Testing</p> -->
+            </div>
+            
+        </div>
 
-        <form action="">
-            <label for="site-search">Search the site:</label>
-            <input type="search" id="site-search" name="q"
-           aria-label="Search through site content" id = "txtOutput">
-        </form>
+        <img src=""
         
-       <!-- <p> value= site-search</p>  -->
-
-    <button>Search</button>
-    </body>
-</html>
-    
+        
+        </body>
+    </html>

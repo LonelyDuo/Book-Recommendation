@@ -6,7 +6,7 @@ import json
 SEARCH_ENDPOINT = "https://www.googleapis.com/books/v1/volumes?"
 # SEARCH_ENDPOINT = "https://www.googleapis.com/books/v1/volumes?content-type=application/json"
 API_KEY = "AIzaSyBlnhTDwJxnr9INvUAz4FMLO4dKoRBureU"
-subject = "fighting"
+
 
 # book = input('pick book subject: ')
 # api_request_response = requests.get()
@@ -42,13 +42,8 @@ while True:
             print("\t",results['volumeInfo']['authors'])
             print("Description:")
             print("\t", results['volumeInfo']['description'])
-            print("\n\n\n\n")
-        # print(api_search_genre(subject))
-        # print(api_search(input_text)['items'][0]['volumeInfo']['title'])
-        # print("\n")
-        # print(api_search(input_text)['items'][0]['volumeInfo']['authors'])
-        # print("\n")
-        # print(api_search(input_text)['items'][0]['volumeInfo']['description'])
+            print("\n\n")
+
 
     # Exit on ctrl+c
     except KeyboardInterrupt:
