@@ -28,24 +28,38 @@ def api_search(text):
 # print(response_data['items'][0]['volumeInfo']['averagtheeRating'])
 # print(response_data)
 
+print("THIS PROGRAM SUGGESTS A BOOK BASED ON BOOKS YOU'VE READ! JUST TYPE IN A BOOK YOU'VE READ AND RECIEVE RECOMENDATIONS AND A % MATCH!")
 while True:
     try:
-        input_text = input("Enter the Book Title: ")
+
+        input_text = input("Enter A Book Title: ")
         if (input_text == "quit"):
             exit(0)
         
         # print(api_search(input_text))
-        print(api_search(input_text)['totalItems'])
+        #print(api_search(input_text)['totalItems'])
 
         for results in api_search(input_text)['items']:
             print("Title:")
             print("\t", results['volumeInfo']['title'])
             print("Author:")
             print("\t", results['volumeInfo']['authors'])
+
             print("Description:")
-            print("\t", results['volumeInfo']['description'])
+            try:
+                print("\t", results['volumeInfo']['description'])
+            except KeyError:
+                print("N/A")
+            
+            
             print("Rating:")
-            print("\t", results['volumeInfo']['averageRating'])
+
+            try:
+                print("\t", results['volumeInfo']['averageRating'])
+            except KeyError:
+                print("N/A")
+
+
             print("\n\n")
 
             user_input = input("Is this the right book?")
@@ -57,7 +71,11 @@ while True:
                     #some of these information might be missing
                     theBook.append(results['volumeInfo']['title'])
                     theBook.append(results['volumeInfo']['authors'])
-                    theBook.append(results['volumeInfo']['description'])
+                    
+                    try:
+                        theBook.append(results['volumeInfo']['description'])
+                    except KeyError:
+                        theBook.append('n/a')
 
                     try:
 
@@ -66,7 +84,11 @@ while True:
 
                         theBook.append('n/a')
 
-                    theBook.append(results['volumeInfo']['categories'][0])
+                    try:
+                        theBook.append(results['volumeInfo']['categories'][0])
+                    except KeyError:
+                        theBook.append("fiction")
+
                     theBook.append(results['volumeInfo']['imageLinks']['thumbnail'])
                     break
             else:
@@ -76,29 +98,41 @@ while True:
 
         booksuggestions = []
         #author books
+
+
         for results in api_search("+inauthor:" + str(theBook[1]))['items']:
 
             addedBook = []
-            for results in api_search("+inauthor:" + str(theBook[1]))['items']:
                     
-                #some of these information might be missing
-                addedBook.append(results['volumeInfo']['title'])
+            #some of these information might be missing
+            addedBook.append(results['volumeInfo']['title'])
+            try:
+
                 addedBook.append(results['volumeInfo']['authors'])
-                try:
-                    addedBook.append(results['volumeInfo']['description'])
-                except:
-                    addedBook.append('n/a')
-                try:
-                    addedBook.append(results['volumeInfo']['averageRating'])
-                except:
-                    addedBook.append('n/a')
+            except:
+                addedBook.append("n/a")
+            try:
+                addedBook.append(results['volumeInfo']['description'])
+            except:
+                addedBook.append('n/a')
+            try:
+                addedBook.append(results['volumeInfo']['averageRating'])
+            except:
+                addedBook.append('n/a')
+            try:
                 addedBook.append(results['volumeInfo']['categories'][0])
+            except:
+                addedBook.append("n/a")
+            try:
                 addedBook.append(results['volumeInfo']['imageLinks']['thumbnail'])
+            except:
+                addedBook.append("no available cover")
             
             #advanced mathematical, scientifically proven match rate. (Nobel won prize)
             percentMatch = 50
 
-            if (int(addedBook[3]) > 3):
+            #if the rating is good, I CAN'T SEEM TO IMPLEMENT IT
+            if (addedBook[3] != 'na'):
                 percentMatch = percentMatch + 20
             
             # Give a rating based on how similar the descriptions are
@@ -113,25 +147,26 @@ while True:
 
         #similar description
         three = 3
-        for results in api_search("+subject:" + theBook[4])['items']:
+
             
-            addedBook = []
-            for results in api_search("+subject:" + theBook[4])['items']:
-                    
-                #some of these information might be missing
-                addedBook.append(results['volumeInfo']['title'])
-                addedBook.append(results['volumeInfo']['authors'])
-                try:
-                    addedBook.append(results['volumeInfo']['description'])
-                except:
-                    addedBook.append('n/a')
-                try:
-                    addedBook.append(results['volumeInfo']['averageRating'])
-                except:
-                    addedBook.append('n/a')
-                addedBook.append(results['volumeInfo']['categories'][0])
-                addedBook.append(results['volumeInfo']['imageLinks']['thumbnail'])
             
+        for results in api_search("+subject:" + str(theBook[4]))['items']:
+            addedBook = []  
+            
+            #some of these information might be missing
+            addedBook.append(results['volumeInfo']['title'])
+            addedBook.append(results['volumeInfo']['authors'])
+            try:
+                addedBook.append(results['volumeInfo']['description'])
+            except:
+                addedBook.append('n/a')
+            try:
+                addedBook.append(results['volumeInfo']['averageRating'])
+            except:
+                addedBook.append('n/a')
+            addedBook.append(results['volumeInfo']['categories'][0])
+            addedBook.append(results['volumeInfo']['imageLinks']['thumbnail'])
+        
             #advanced mathematical, scientifically proven match rate. (Nobel won prize)
             percentMatch = 50
 
@@ -155,17 +190,23 @@ while True:
             break
 
         for book in booksuggestions:
-        
+            dummy_list = ["Title:", "Author:", "Description:", "Rating:", "Category:", "Book Cover:", "% Match:"]
+            k = 0
+            print ("\n")
             for element in book:
-                print(element)
-            user_input = input("Like what you see?")
-            
-            while user_input == "1":
+                print(dummy_list[k])
+                print('\t' + str(element))
+                k = k+1
+
+            user_input = input("Would you like another suggestion?")
+
+            while user_input == "yes":
                 break
             else:
                 continue
             break
             
+        
 
         
     # Exit on ctrl+c
