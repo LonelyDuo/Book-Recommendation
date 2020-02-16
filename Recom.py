@@ -49,3 +49,8 @@ while True:
     except KeyboardInterrupt:
         print("Exiting program")
         exit(0)
+
+@staticmethod
+def get_contents(contents):
+    print(contents)
+    return contents
